@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>MenuTry</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=h0rGWZRMoc3lrpOq8ClN"></script>
+    <script type="text/javascript" src="../data/client_raw_data.js"></script>
+    <script type="text/javascript" src="../src/MarkerOverlappingRecognizer.js"></script>
+    <link rel="stylesheet" type="text/css" href="../src/dropdown.css"/>
+    <style type="text/css">
+        html, body { width:100%;height:100%;padding:0;margin:0; }
+    </style>
+</head>
+<body>
+<div id="map" style="width:100%;height:100%;padding:0;margin:0;position: relative;z-index: 0">
+    <div style="position: relative; z-index: 1; float : right">
+        <dl id="yearCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">연도</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="mutliSelect">
+                    <ul>
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="monthCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">월</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="mutliSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="routeCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">방문경로</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="mutliSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="sexCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">성별</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="mutliSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="ageCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">연령</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="mutliSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <button id="searchBtn" onclick="searchBtn_click();">검색</button>
+    </div>
+</div>
+<script>
+    //selectlist 조건
+    var select = {yearlist : [], monthlist : [], routelist : [], sex : ["남", "여"], agelist : []};
+    for (var i = 0, ii = client_raw_data.searchResult.client.length; i < ii; i++){
+        if (select.yearlist.indexOf(client_raw_data.searchResult.client[i].year) == -1){
+            select.yearlist.push(client_raw_data.searchResult.client[i].year);
+        }
+        if (select.monthlist.indexOf(client_raw_data.searchResult.client[i].month) == -1){
+            select.monthlist.push(client_raw_data.searchResult.client[i].month);
+        }
+        if (select.routelist.indexOf(client_raw_data.searchResult.client[i].route) == -1){
+            select.routelist.push(client_raw_data.searchResult.client[i].route);
+        }
+        if (select.agelist.indexOf(client_raw_data.searchResult.client[i].age) == -1){
+            select.agelist.push(client_raw_data.searchResult.client[i].age);
+        }
+    }
+    select.yearlist.sort();
+    select.monthlist.sort();
+    select.agelist.sort();
+    var selected = {selectedYear : [], selectedMonth : [], selectedRoute : [], selectedSex : [], selectedAge: []};
+
+    // 요소 추가
+    function addElementLi(id, value, name) {
+        $(id).append("<li><input type=\"checkbox\" value="+value+" name="+name+">"+value+"</li>")
+    }
+    for (var i = 0, ii = select.yearlist.length; i<ii; i++ ) {
+        addElementLi("#yearCheckboxes dd div ul", select.yearlist[i], "year");
+    }
+    for (var i = 0, ii = select.monthlist.length; i<ii; i++ ) {
+        addElementLi("#monthCheckboxes dd div ul", select.monthlist[i], "month");
+    }
+    for (var i = 0, ii = select.routelist.length; i<ii; i++ ) {
+        addElementLi("#routeCheckboxes dd div ul", select.routelist[i], "route");
+    }
+    for (var i = 0, ii = select.sex.length; i<ii; i++ ) {
+        addElementLi("#sexCheckboxes dd div ul", select.sex[i], "sex");
+    }
+    for (var i = 0, ii = select.agelist.length; i<ii; i++ ) {
+        addElementLi("#ageCheckboxes dd div ul", select.agelist[i], "age");
+    }
+    //$("#years").append("<li><input type=\"checkbox\" value=data >data</li>");
+
+    // 전체 체크
+    $('input:checkbox').each(function() {this.checked = true;});
+
+    // 펼치기
+    $("#yearCheckboxes dt a").on('click', function() {
+        $("#yearCheckboxes dd ul").slideToggle('fast');
+    });
+    $("#monthCheckboxes dt a").on('click', function() {
+        $("#monthCheckboxes dd ul").slideToggle('fast');
+    });
+    $("#routeCheckboxes dt a").on('click', function() {
+        $("#routeCheckboxes dd ul").slideToggle('fast');
+    });
+    $("#sexCheckboxes dt a").on('click', function() {
+        $("#sexCheckboxes dd ul").slideToggle('fast');
+    });
+    $("#ageCheckboxes dt a").on('click', function() {
+        $("#ageCheckboxes dd ul").slideToggle('fast');
+    });
+
+
+    // 닫기
+    $("#yearCheckboxes dd ul li a").on('click', function() {
+        $("#yearCheckboxes dd ul").hide();
+    });
+    $("#monthCheckboxes dd ul li a").on('click', function() {
+        $("#monthCheckboxes dd ul").hide();
+    });
+    $("#routeCheckboxes dd ul li a").on('click', function() {
+        $("#routeCheckboxes dd ul").hide();
+    });
+    $("#sexCheckboxes dd ul li a").on('click', function() {
+        $("#sexCheckboxes dd ul").hide();
+    });
+    $("#ageCheckboxes dd ul li a").on('click', function() {
+        $("#ageCheckboxes dd ul").hide();
+    });
+
+    // selected all 클릭 이벤트
+    $('#yearCheckboxes dd div input[value="Select All"]').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('#yearCheckboxes dd div input:checkbox[name="year"]').each(function() {this.checked = true;});
+        } else {
+            $('#yearCheckboxes dd div input:checkbox[name="year"]').each(function() {this.checked = false;});
+        }
+    });
+    $('#monthCheckboxes dd div input[value="Select All"]').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('#monthCheckboxes dd div input:checkbox[name="month"]').each(function() {this.checked = true;});
+        } else {
+            $('#monthCheckboxes dd div input:checkbox[name="month"]').each(function() {this.checked = false;});
+        }
+    });
+    $('#routeCheckboxes dd div input[value="Select All"]').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('#routeCheckboxes dd div input:checkbox[name="route"]').each(function() {this.checked = true;});
+        } else {
+            $('#routeCheckboxes dd div input:checkbox[name="route"]').each(function() {this.checked = false;});
+        }
+    });
+    $('#sexCheckboxes dd div input[value="Selecte All"]').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('#sexCheckboxes dd div input:checkbox[name="sex"]').each(function() {this.checked = true;});
+        } else {
+            $('#sexCheckboxes dd div input:checkbox[name="sex"]').each(function() {this.checked = false;});
+        }
+    });
+    $('#ageCheckboxes dd div input[value="Select All"]').on('click', function() {
+        if ($(this).is(':checked')) {
+            $('#ageCheckboxes dd div input:checkbox[name="age"]').each(function() {this.checked = true;});
+        } else {
+            $('#ageCheckboxes dd div input:checkbox[name="age"]').each(function() {this.checked = false;});
+        }
+    });
+
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $("#yearCheckboxes dd ul").hide();
+    });
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $("#monthCheckboxes dd ul").hide();
+    });
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $("#routeCheckboxes dd ul").hide();
+    });
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $("#sexCheckboxes dd ul").hide();
+    });
+    $(document).bind('click', function(e) {
+        var $clicked = $(e.target);
+        if (!$clicked.parents().hasClass("dropdown")) $("#ageCheckboxes dd ul").hide();
+    });
+
+
+    //검색버튼 클릭 이벤트
+    function searchBtn_click(){
+        // seleted 초기화
+        selected.selectedYear = [];
+        selected.selectedMonth = [];
+        selected.selectedRoute = [];
+        selected.selectedSex = [];
+        selected.selectedAge = [];
+
+        // 체크박스 넣기
+        $('input:checkbox[name="year"]').each(function () {
+            if(this.checked){
+                selected.selectedYear.push(this.value);
+            }
+        });
+        $('input:checkbox[name="month"]').each(function () {
+            if(this.checked){
+                selected.selectedMonth.push(this.value);
+            }
+        });
+        $('input:checkbox[name="route"]').each(function () {
+            if(this.checked){
+                selected.selectedRoute.push(this.value);
+            }
+        });
+        $('input:checkbox[name="sex"]').each(function () {
+            if(this.checked){
+                selected.selectedSex.push(this.value);
+            }
+        });
+        $('input:checkbox[name="age"]').each(function () {
+            if(this.checked){
+                selected.selectedAge.push(this.value);
+            }
+        });
+        alert(selected.selectedRoute);
+    }
+
+    function getSelectedValue(id) {
+        return $("#" + id).find("dt a span.value").html();
+    }
+</script>
+</body>
+</html>

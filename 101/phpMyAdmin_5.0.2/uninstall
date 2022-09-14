@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+rm -rf /usr/local/phpstudy/soft/phpMyAdmin/phpMyAdmin-5.0.2-all-languages
+
+#remove and unload  phpmyadmin-5.0.2.conf

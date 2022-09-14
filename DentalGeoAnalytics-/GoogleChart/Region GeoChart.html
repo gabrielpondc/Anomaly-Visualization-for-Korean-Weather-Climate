@@ -1,0 +1,90 @@
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+<script type='text/javascript'>google.load('visualization', '1', {'packages': ['geochart']});
+google.setOnLoadCallback(drawVisualization);
+
+function drawVisualization() {
+    var data = new google.visualization.DataTable();
+
+    data.addColumn('string', 'Country');
+    data.addColumn('number', 'Value');
+    data.addColumn({type:'string', role:'tooltip'});var ivalue = new Array();
+
+    data.addRows([[{v:'KR-11', f:'Seoul Teugbyeolsi'},0,'Click to change background color']]);
+    ivalue['KR-11'] = '#3182BD';
+
+    data.addRows([[{v:'KR-26', f:'Busan Gwang\'yeogsi'},1,'Click to change background color']]);
+    ivalue['KR-26'] = '#3182BD';
+
+    data.addRows([[{v:'KR-27',f:'Daegu Gwang\'yeogsi'},2,'Click to change background color']]);
+    ivalue['KR-27'] = '#3182BD';
+
+    data.addRows([[{v:'KR-30',f:'Daejeon Gwang\'yeogsi'},3,'Click to change background color']]);
+    ivalue['KR-30'] = '#3182BD';
+
+    data.addRows([[{v:'KR-29',f:'Gwangju Gwang\'yeogs'},4,'Click to change background color']]);
+    ivalue['KR-29'] = '#3182BD';
+
+    data.addRows([[{v:'KR-28',f:'Incheon Gwang\'yeogsi'},5,'Click to change background color']]);
+    ivalue['KR-28'] = '#3182BD';
+
+    data.addRows([[{v:'KR-31',f:'Ulsan Gwang\'yeogsi'},6,'Click to change background color']]);
+    ivalue['KR-31'] = '#3182BD';
+
+    data.addRows([[{v:'KR-43',f:'Chungcheongbugdo'},7,'Click to change background color']]);
+    ivalue['KR-43'] = '#3182BD';
+
+    data.addRows([[{v:'KR-44',f:'Chungcheongnamdo'},8,'Click to change background color']]);
+    ivalue['KR-44'] = '#3182BD';
+
+    data.addRows([[{v:'KR-42',f:'Gang\'weondo'},9,'Click to change background color']]);
+    ivalue['KR-42'] = '#9ECAE1';
+
+    data.addRows([[{v:'KR-41',f:'Gyeonggido'},10,'Click to change background color']]);
+    ivalue['KR-41'] = '#9ECAE1';
+
+    data.addRows([[{v:'KR-47',f:'Gyeongsangbugdo'},11,'Click to change background color']]);
+    ivalue['KR-47'] = '#9ECAE1';
+
+    data.addRows([[{v:'KR-48',f:'Gyeongsangnamdo'},12,'Click to change background color']]);
+    ivalue['KR-48'] = '#9ECAE1';
+
+    data.addRows([[{v:'KR-49',f:'Jejudo'},13,'Click to change background color']]);
+    ivalue['KR-49'] = '#9ECAE1';
+
+    data.addRows([[{v:'KR-45',f:'Jeonrabugdo'},14,'Click to change background color']]);
+    ivalue['KR-45'] = '#9ECAE1';
+
+    data.addRows([[{v:'KR-46',f:'Jeonranamdo'},15,'Click to change background color']]);
+    ivalue['KR-46'] = '#9ECAE1';
+
+    var options = {
+        backgroundColor: {fill:'#FFFFFF',stroke:'#FFFFFF' ,strokeWidth:0 },
+        colorAxis:  {minValue: 0, maxValue: 12,  colors: ['#D95F0E','#FEC44F','#FEC44F','#FEC44F','#FEC44F','#FEC44F','#FEC44F','#FEC44F','#FEC44F','#FFF7BC','#FFF7BC','#FFF7BC','#FFF7BC',]},
+        legend: 'none',
+        backgroundColor: {fill:'#FFFFFF',stroke:'#FFFFFF' ,strokeWidth:0 },
+        datalessRegionColor: '#F5F0E7',
+        displayMode: 'regions',
+        enableRegionInteractivity: 'true',
+        resolution: 'province',
+        sizeAxis: {minValue: 1, maxValue:1,minSize:10,  maxSize: 10},
+        region:'KR',
+        keepAspectRatio: true,
+        width:600,
+        height:400,
+        tooltip: {textStyle: {color: '#444444'}, trigger:'focus'}
+    };
+    var chart = new google.visualization.GeoChart(document.getElementById('visualization'));
+    google.visualization.events.addListener(chart, 'select', function() {
+        var selection = chart.getSelection();
+        if (selection.length == 1) {
+            var selectedRow = selection[0].row;
+            var selectedRegion = data.getValue(selectedRow, 0);
+            if(selectedRegion == 'KR') {
+                window.location = "krGeoChart.html";
+            }
+        }
+    });
+    chart.draw(data, options);
+}
+</script>
+<div id='visualization'></div>

@@ -1,0 +1,113 @@
+<?php
+DEFINE ('DB_USER','root');
+DEFINE ('DB_PASSWORD','gjk19961226');
+DEFINE ('DB_HOST','localhost');
+DEFINE ('DB_NAME','virus');
+$dbc=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could not to connect to Mysql:'.mysqli_connect_error());
+mysqli_set_charset($dbc, 'utf8');
+$sqlh="select time,dia,sus,cur,de from  history";
+$resh=mysqli_query($dbc,$sqlh);
+$resulth=mysqli_fetch_array($resh);
+?>
+<head>
+    <meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta charset="UTF-8">
+  <title>Title</title>
+    <!--必要样式-->
+<link href="bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/china.js"></script>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
+    <link rel="stylesheet" type="text/css" href="component.css">
+    <script type="text/javascript" src="js/world.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+
+    <script type="text/javascript" src="js/jquery-1.8.0.js"></script>
+    <script type="text/javascript" src="huaian.js"></script>
+    <script src="js/echarts.js" charset="UTF-8"></script>
+    <script src="js/jquery-1.8.0.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="main" style="width: 800px;height: 600px"></div>
+<script>
+    function randomData() {
+        return Math.round(Math.random() * 500);
+    }
+
+    var mydata = [
+        {name: '清江浦区', value: '100'},
+
+    ]
+    $.get('js/map/ha.json', function (geoJson) {
+        //console.log(geoJson)
+        echarts.registerMap('淮安', geoJson);
+
+        // 可从这里提取每个城市对应的json
+
+        var option_map = {
+            tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                    if (params.name) {
+                        var value = params.value || 0;
+                        return typeof value !== 'object' ? params.name + '<br>' + "提示 : " + value : params.name;
+                    }
+                }
+            },
+            visualMap: {
+                type: 'continuous',
+                show: false,
+                min: 0,
+                max: 500,
+                left: 'left',
+                top: 'bottom',
+                text: ['高', '低'],
+                calculable: true,
+                // seriesIndex: [1],
+                inRange: {
+                    //color: ['#dcc5fe', '#b592e9', '#a286ce', '#997dc2', '#7250a6']
+                    color: ['#FFFFFF', '#0099FF']
+                }
+            },
+            geo: {
+                map: '淮安',
+                roam: false
+            },
+            series: [{
+                type: 'map',
+                mapType: '淮安',
+                roam: false,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inside',
+                        textStyle: {
+                            color: '#000000'
+                        }
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderColor: 'transparent',
+                    }
+                },
+                data: mydata
+            }]
+        };
+        var myChart = echarts.init(document.getElementById('main'));
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option_map);
+        myChart.on('click', function (params) {
+            // 通过点击事件下钻到下级
+            console.log(params)
+        })
+    });
+</script>
+
+</body>
+</html>
+

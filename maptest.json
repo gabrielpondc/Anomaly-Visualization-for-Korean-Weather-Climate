@@ -1,0 +1,41 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+         "type": "Point",
+         "coordinates":  [ 126.97299241863696,37.56768799957185]
+      },
+      "properties": {
+      "capacity":5.0,
+      "city":"서울특별시"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+         "type": "Point",
+         "coordinates":  [ 126.64846149218857 ,37.4106544114952]
+      },
+      "properties": {
+      "capacity":2.1,
+      "city":"인천광역시"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+         "type": "Point",
+         "coordinates":  [ 126.234362,36.903932 ]
+      },
+      "properties": {
+      "annualCarbon":26.97,
+      "capacity":0.000000000001,
+      "coalType":"Unknown / Bituminous",
+      "city":"South Korea"
+
+      }
+    }
+  ]
+}

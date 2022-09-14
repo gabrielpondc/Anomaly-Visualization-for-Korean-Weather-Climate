@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>HeatMap</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=h0rGWZRMoc3lrpOq8ClN&submodules=panorama,geocoder,drawing,visualization"></script>
+    <script type="text/javascript" src="../data/settedClientData3.js"></script>
+    <style type="text/css">
+        html, body { width:100%;height:100%;padding:0;margin:0; }
+    </style>
+</head>
+<body>
+<div id="map" style="width:100%;height:100%;padding:0;margin:0;position: relative;z-index: 0"></div>
+<script>
+    var mapOptions = {
+        baseTileOpacity: 1,
+        zoom: 10,
+        center: new naver.maps.LatLng(37.54218, 126.84215),
+        zoomControl : true
+    };
+
+    var map = new naver.maps.Map('map', mapOptions);
+
+
+    var clients = clients;
+    //coords 추가
+    var coords = [];
+    for (var i = 0; i<clients.length; i++){
+        var coord = [clients[i].address.lng, clients[i].address.lat];
+        coords.push(coord);
+    }
+
+    function setheatmap() {
+        var heatmap = new naver.maps.visualization.HeatMap({
+            map: map,
+            data: coords,
+            opacity : 0.3,
+            radius : 10,
+            colorMap : 'hot'
+        });
+    }
+    setheatmap();
+
+
+</script>
+</body>
+</html>

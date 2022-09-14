@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>DentalGeoAnalytics</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=h0rGWZRMoc3lrpOq8ClN"></script>
+    <script type="text/javascript" src="../data/settedClientData.js"></script>
+    <script type="text/javascript" src="../src/MarkerClustering.js"></script>
+    <link rel="stylesheet" type="text/css" href="../src/dropdown.css"/>
+    <style type="text/css">
+        html, body { width:100%;height:100%;padding:0;margin:0; }
+    </style>
+</head>
+<body>
+<div id="map" style="width:100%;height:100%;padding:0;margin:0;position: relative;z-index: 0">
+    <div style="position: relative; z-index: 1; float : right">
+        <dl id="yearCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">연도</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="multiSelect">
+                    <ul>
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="monthCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">월</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="multiSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="routeCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">방문경로</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="multiSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="sexCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">성별</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="multiSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl id="ageCheckboxes" class="dropdown">
+
+            <dt>
+                <a href="#">
+                    <span class="hida">연령</span>
+                    <p class="multiSel"></p>
+                </a>
+            </dt>
+
+            <dd>
+                <div class="multiSelect">
+                    <ul >
+                        <li><input type="checkbox" value="Select All">Select All</li>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <button id="searchBtn" onclick="searchBtn_click();">검색</button>
+    </div>
+</div>
+<script type="text/javascript" src="../src/selectMenu.js"></script>
+<script type="text/javascript" src="../src/createDatas.js"></script>
+</body>
+</html>

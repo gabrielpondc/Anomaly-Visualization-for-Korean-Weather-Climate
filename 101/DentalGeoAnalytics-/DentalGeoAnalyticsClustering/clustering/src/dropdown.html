@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<link>
+    <meta charset="UTF-8">
+    <title>dropdown</title>
+    <script type="text/javascript" src="../data/client_raw_data.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="../src/dropdown.css"/>
+</head>
+<body>
+<script type="text/javascript" src="createSelect.js"> </script>
+
+<dl id="yearCheckboxes" class="dropdown">
+
+    <dt>
+        <a href="#">
+            <span class="hida">연도</span>
+            <p class="multiSel"></p>
+        </a>
+    </dt>
+
+    <dd>
+        <div class="mutliSelect">
+            <ul>
+                <li><input type="checkbox" value="Select All">Select All</li>
+            </ul>
+        </div>
+    </dd>
+</dl>
+<dl id="monthCheckboxes" class="dropdown">
+
+    <dt>
+        <a href="#">
+            <span class="hida">월</span>
+            <p class="multiSel"></p>
+        </a>
+    </dt>
+
+    <dd>
+        <div class="mutliSelect">
+            <ul >
+                <li><input type="checkbox" value="Select All">Select All</li>
+            </ul>
+        </div>
+    </dd>
+</dl>
+<dl id="routeCheckboxes" class="dropdown">
+
+    <dt>
+        <a href="#">
+            <span class="hida">방문경로</span>
+            <p class="multiSel"></p>
+        </a>
+    </dt>
+
+    <dd>
+        <div class="mutliSelect">
+            <ul >
+                <li><input type="checkbox" value="Select All">Select All</li>
+            </ul>
+        </div>
+    </dd>
+</dl>
+<dl id="sexCheckboxes" class="dropdown">
+
+    <dt>
+        <a href="#">
+            <span class="hida">성별</span>
+            <p class="multiSel"></p>
+        </a>
+    </dt>
+
+    <dd>
+        <div class="mutliSelect">
+            <ul >
+                <li><input type="checkbox" value="Select All">Select All</li>
+            </ul>
+        </div>
+    </dd>
+</dl>
+<dl id="ageCheckboxes" class="dropdown">
+
+    <dt>
+        <a href="#">
+            <span class="hida">연령</span>
+            <p class="multiSel"></p>
+        </a>
+    </dt>
+
+    <dd>
+        <div class="mutliSelect">
+            <ul >
+                <li><input type="checkbox" value="Select All">Select All</li>
+            </ul>
+        </div>
+    </dd>
+</dl>
+
+<button id="searchBtn" onclick="searchBtn_click();">검색</button>
+
+<script type="text/javascript" src="selectMenu.js"></script>
+</body>
+</html>

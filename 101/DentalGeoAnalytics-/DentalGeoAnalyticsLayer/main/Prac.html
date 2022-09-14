@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Prac</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=h0rGWZRMoc3lrpOq8ClN"></script>
+    <style type="text/css">
+        html, body { width:100%;height:100%;padding:0;margin:0; }
+    </style>
+</head>
+<body>
+<div id="map" style="width:100%;height:100%;padding:0;margin:0;position: relative;z-index: 0"></div>
+<script>
+    var mapOptions = {
+        background : "#ffffff",
+        baseTileOpacity: 0.5,
+        zoom: 3,
+        MapTypeId: "NORMAL",
+        logoControl : false,
+        mapDataControl : false,
+        zoomControl : true
+    };
+
+    var map = new naver.maps.Map('map', mapOptions);
+</script>
+<script type="text/javascript" src="../data/geojson_11.js"></script>
+<script type="text/javascript">
+
+
+    //geojsons 가져오기
+    geojsons = [];
+    geojsons = geojsons_11;
+
+    var options = {
+        strokeColor: "#000000",
+        strokeOpacity: 0.6,
+        strokeWeight: 3,
+        fillColor: "#ffffff",
+        fillOpacity: 1,
+        clickable: true,
+    };
+
+    function addGeoJsonLayer(geojsons){
+        for (var i=0; i<geojsons.length; i++){
+            map.data.addGeoJson(geojsons[i]);
+        }
+        map.data.setStyle(options);
+    }
+    addGeoJsonLayer(geojsons);
+
+    //
+    function setGeojsonListiner(seq){
+        var feature = map.data._features[seq];
+        feature.addListener('click', function () {
+            if (!feature.activation) {
+                map.data.overrideStyle(feature, {
+                    fillColor:"#ff5555"
+                });
+                feature.activation = true ;
+            }
+            else {
+                map.data.overrideStyle(feature, {
+                    fillColor:"#ffffff"
+                });
+                feature.activation = false ;
+            }
+        });
+
+        feature.addListener('dblclick', function () {
+
+            var adm_cd = feature.property_adm_cd;
+            var url = '../data/geojson_' + adm_cd.toString() +'.js';
+            $('head').append("<script type=text/javascript src=" + url + "><\/script>");
+
+            geojsons = geojsons_11;
+
+            addGeoJsonLayer(geojsons);
+
+
+            //map.setCenter(new naver.maps.LatLng(feature.property_y, feature.property_x));
+            //map.setZoom(6, true)
+        });
+
+        feature.addListener('mouseover', function () {
+            map.data.overrideStyle(feature, {
+                fillColor:"#ff5555"
+            });
+        });
+
+        feature.addListener('mouseout', function () {
+            if (!feature.activation){
+                map.data.overrideStyle(feature, {
+                    fillColor:"#ffffff"
+                });
+            }
+
+        });
+    }
+
+    /*
+    for (var i=0; i<map.data._features.length; i++){
+        setListiner(i);
+    }*/
+
+
+
+
+    //우선 서울부터 설정
+    setGeojsonListiner(0);
+
+
+
+</script>
+</body>
+</html>

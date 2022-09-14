@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>ClickableGeojson</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=h0rGWZRMoc3lrpOq8ClN"></script>
+    <style type="text/css">
+        html, body { width:100%;height:100%;padding:0;margin:0; }
+    </style>
+</head>
+<body>
+<div id="map" style="width:100%;height:100%;padding:0;margin:0;position: relative;z-index: 0"></div>
+<script>
+    var mapOptions = {
+        background : "#ffffff",
+        baseTileOpacity: 0.5,
+        zoom: 3,
+        MapTypeId: "NORMAL",
+        logoControl : false,
+        mapDataControl : false,
+        zoomControl : true
+    };
+
+    var map = new naver.maps.Map('map', mapOptions);
+</script>
+<script type="text/javascript" src="../data/geojsons_seoul.js"></script>
+<script type="text/javascript">
+
+
+    //geojsons 가져오기
+    geojsons = [];
+    geojsons = geojsons_seoul;
+
+    var polygons = [],
+        infoWindows = [];
+
+
+    //폴리곤, 인포윈도우 생성함수
+    function addPolygons(geojsons) {
+        for (var i=0, ii=geojsons[0].features.length; i<ii; i++) {
+            var geojson = geojsons[0];
+            var coordinates = geojson.features[i].geometry.coordinates;
+            var adm_cd = geojson.features[i].properties.adm_cd;
+            var adm_nm = geojson.features[i].properties.adm_nm;
+            var center = new naver.maps.Point(geojson.features[i].properties.x, geojson.features[i].properties.y);
+            center = naver.maps.UTMK.fromUTMKToLatLng(center);
+
+            var paths = [];
+            for (var j=0, jj=coordinates.length; j<jj; j++) {
+                var latlngs = [];
+                for (var k=0, kk=coordinates[j].length; k<kk; k++){
+                    var point = new naver.maps.Point(coordinates[j][k][0], coordinates[j][k][1]);
+                    var latlng = naver.maps.UTMK.fromUTMKToLatLng(point);
+                    latlngs.push(latlng);
+                }
+                paths.push(latlngs);
+            }
+
+            var polygon = new naver.maps.Polygon({
+                map: map,
+                adm_cd : adm_cd,
+                adm_nm : adm_nm,
+                paths: paths,
+                fillColor: "#ffffff",
+                fillOpacity: 0.3,
+                strokeColor: '#000000',
+                strokeOpacity: 0.6,
+                strokeWeight: 2,
+                center : center,
+                clickable: true,
+                activation : false
+            });
+
+            var infoWindow = new naver.maps.InfoWindow({
+                point: polygon.center,
+                content: '<div style="width:120px;text-align:center;padding:2px;"><b>' + polygon.adm_nm + '</b></div>' +
+                '<div style="width:120px;text-align:center;padding:2px;"><b>200명</b></div>'
+            });
+
+            polygons.push(polygon);
+            infoWindows.push(infoWindow);
+        }
+    }
+    // 클릭 이벤트 핸들러
+    function getClickHandler_polygon(seq) {
+        return function () {
+            var polygon = polygons[seq];
+            var infoWindow = infoWindows[seq];
+            if (!polygon.activation) {
+                polygon.setOptions({
+                    fillColor: "#ff5555",
+                    activation: true
+                });
+            }
+            else {
+                polygon.setOptions({
+                    fillColor: "#ff5555",
+                    activation: false
+                });
+            }
+        }
+    }
+    // 더블클릭 이벤트 핸들러
+    function getDblHandler_polygon(seq) {
+        return function () {
+            var polygon = polygons[seq];
+            var id = polygon.id;
+            var center = new naver.maps.LatLng(polygon.center);
+            map.setCenter(center);
+            map.setZoom(6, true);
+            naver.maps.Event.clearInstanceListeners(polygons[0]);
+
+            // 제거하기
+            for (var i = 0, ii=polygons.length; i<ii; i++) {
+                polygons[i].setMap(null);
+                naver.maps.Event.clearInstanceListeners(polygons[i])
+            }
+            // 새로운 폴리곤 정의하기
+            setPolygons(geodatas_sigungu_11);
+            setEvent_polygon();
+        }
+    }
+    // mouseover 이벤트 핸들러
+    function getMouseoverHandler_polygon(seq) {
+        return function () {
+            var polygon = polygons[seq];
+            var infoWindow = infoWindows[seq];
+            if (!polygon.activation) {
+                polygon.setOptions({
+                    fillColor: "#ff5555"
+                })
+            }
+            infoWindow.open(map, infoWindow.point);
+        }
+    }
+    // mouseout 이벤트 핸들러
+    function getMouseoutHandler_polygon(seq) {
+        return function () {
+            var polygon = polygons[seq];
+            var infoWindow = infoWindows[seq];
+            if (!polygon.activation) {
+                polygon.setOptions({
+                    fillColor: "#ffffff"
+                });
+            }
+            infoWindow.close();
+        }
+    }
+
+    // 클릭 이벤트 설정
+    function setEvent_polygon () {
+        for (var i = 0, ii = polygons.length; i < ii; i++) {
+            naver.maps.Event.addListener(polygons[i], 'click', getClickHandler_polygon(i));
+            naver.maps.Event.addListener(polygons[i], 'dblclick', getDblHandler_polygon(i));
+            naver.maps.Event.addListener(polygons[i], 'mouseover', getMouseoverHandler_polygon(i));
+            naver.maps.Event.addListener(polygons[i], 'mouseout', getMouseoutHandler_polygon(i));
+        }
+    }
+
+    addPolygons(geojsons);
+    setEvent_polygon();
+
+
+</script>
+</body>
+</html>
