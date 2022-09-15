@@ -1,0 +1,23 @@
+{
+    "type":"FeatureCollection",
+    "features":[
+      {"type":"Feature",
+      "geometry":{
+        "type":"Point",
+        "coordinates":[126.973,37.5677]
+        },
+        "properties":{
+          "capacity":1.07533,
+          "city":"\uc11c\uc6b8\ud2b9\ubcc4\uc2dc"}
+          },
+          {"type":"Feature",
+          "geometry":{
+            "type":"Point",
+            "coordinates":[129.07,35.2082]
+            },
+            "properties":{
+              "capacity":1.05181,
+              "city":"\ubd80\uc0b0\uad11\uc5ed\uc2dc"}
+            }
+            ]
+}

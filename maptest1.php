@@ -546,6 +546,7 @@ Chung-Ang University, Korean
   <script>
     var weburl; 
     var weburl2;
+
     function apps(){
       document.getElementById('left').className='hidden'
     }// 给按钮注册事件
@@ -564,9 +565,8 @@ Chung-Ang University, Korean
  <script src="https://unpkg.com/@antv/l7"></script>
  <script>
   var ppp;
-drawmap();
-function drawmap(){
-  const scene = new L7.Scene({
+  var address='chushizhi.json';
+  var scene = new L7.Scene({
     id: 'map',
     logoVisible:false,
     map: new L7.Mapbox({
@@ -605,24 +605,112 @@ function drawmap(){
         
       }),
   });
-
   scene.on('loaded', () => {
     fetch(
-      'maptest.json'
+      address
     )
       .then(res => res.json())
       .then(data => {
+        ppp=data
+        data.features = data.features.filter(item => {
+          return item.properties.capacity;
+        });
+        const pointLayer = new L7.PointLayer({})
+          .source(data)
+          .shape('simple')
+          .animate({
+            enable: true,
+            speed:0.1,
+            })
+          .size('capacity', [15, 15 ])
+          
+          .color('capacity',['#004c97', '#004c97', '#004c97'])
+          .active(true)
+          .style({
+            opacity: 0.5,
+            strokeWidth: 3
+          });
+
+        scene.addLayer(pointLayer);
+        pointLayer.on('click', e => {
+          ppp=e
+          initPlane(e.feature.properties.city)
+        })
+      });
+  });
+
+
+
+
+function initPlane(loc) {
+  window.location.href="maptest1.php?name="+loc; 
+}
+
+function rem(num){
+  var a=num;
+  scene.destroy();
+  scene = new L7.Scene({
+    id: 'map',
+    logoVisible:false,
+    map: new L7.Mapbox({
+          center: [127.859935,35.879258],
+          zoom: 6.5,
+          logo: false,
+          style: {
+            version: 8,
+            sources: {
+              'raster-tiles': {
+                type: 'raster',
+                tiles: [
+                  // mt(0—3) Google地图使用了四个服务地址
+                  // lyrs=
+                  // m：路线图
+                  // t：地形图
+                  // p：带标签的地形图
+                  // s：卫星图
+                  // y：带标签的卫星图
+                  // h：标签层（路名、地名等）
+                  'https://mt1.google.com/maps/vt?lyrs=m%40721&hl=ko-KR&gl=KR&x={x}&y={y}&z={z}',
+                ],
+                tileSize: 256,
+              },
+            },
+            layers: [
+              {
+                id: 'google',
+                type: 'raster',
+                source: 'raster-tiles',
+                // minZoom: 0,
+                // "maxzoom": 18
+              },
+            ],
+          },
+        
+      }),
+  });
+  scene.on('loaded', () => {
+    fetch(
+      a
+    )
+      .then(res => res.json())
+      .then(data => {
+        ppp=data
         data.features = data.features.filter(item => {
           return item.properties.capacity;
         });
         const pointLayer = new L7.PointLayer({})
           .source(data)
           .shape('circle')
-          .size('capacity', [ 10, 50 ])
+          .animate({
+            enable: true,
+            rings:4,
+            })
+          .size('capacity', [ 50, 100 ])
+          
           .color('capacity',['#1059b3', '#b36f10', '#ab2020'])
           .active(true)
           .style({
-            opacity: 0.5,
+
             strokeWidth: 0
           });
 
@@ -635,11 +723,6 @@ function drawmap(){
   });
 }
 
-
-
-function initPlane(loc) {
-  window.location.href="maptest1.php?name="+loc; 
-}
 
 
 
@@ -888,12 +971,9 @@ btn1.onclick = function () {
           myChart.setOption(option);
           myChart.group='weather';
           myChart.on('click', function (params) {
-            document.getElementById("myHeader").innerHTML = "<?php echo $location ?> 날씨 정보<br>"+params.name;
-            document.getElementById("myHeader1").innerHTML = "각 도시 "+params.name+" 이상 점수";
-            creatTable(infor(params.name));
-            draw2(infor2(params.name));
             
-            city='<?php echo $location ?>';
+            rem('xin1.php?date='+params.name);
+  
             
             // window.webkit.messageHandlers.iOSObj.postMessage(data)
           });

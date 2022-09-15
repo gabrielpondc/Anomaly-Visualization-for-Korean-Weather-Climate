@@ -52,12 +52,12 @@ $arr=array();
 while ($row = mysqli_fetch_row($result1))
   { 
     list($la,$ln,$sc,$ci) = $row;
-    $arr=[$la,$ln];
+    $arr=[floatval($ln),floatval($la)];
     $ne=new neibu();
     $ne->type= $type10;
     $ne->geometry->type=$type12;
     $ne->geometry->coordinates=$arr;
-    $ne->properties->capacity=$sc;
+    $ne->properties->capacity=floatval($sc);
     $ne->properties->city=$ci;
      //数组赋值
     $array[] = $ne;
