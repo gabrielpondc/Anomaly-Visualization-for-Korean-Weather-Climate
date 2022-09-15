@@ -568,6 +568,7 @@ drawmap();
 function drawmap(){
   const scene = new L7.Scene({
     id: 'map',
+    logoVisible:false,
     map: new L7.Mapbox({
           center: [127.859935,35.879258],
           zoom: 6.5,
