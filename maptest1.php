@@ -564,11 +564,14 @@ Chung-Ang University, Korean
  <script src="https://unpkg.com/@antv/l7"></script>
  <script>
   var ppp;
+drawmap();
+function drawmap(){
   const scene = new L7.Scene({
     id: 'map',
     map: new L7.Mapbox({
-          center: [126.98969572367233,37.59537817392361],
+          center: [127.859935,35.879258],
           zoom: 6.5,
+          logo: false,
           style: {
             version: 8,
             sources: {
@@ -629,6 +632,7 @@ Chung-Ang University, Korean
         })
       });
   });
+}
 
 
 

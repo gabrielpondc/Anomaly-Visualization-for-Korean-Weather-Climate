@@ -11,36 +11,60 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
   { 
     die ("Can\'t use  " ); 
   } 
-$sql1 = 'SELECT test.longitude,test.latitude,dataset.score,test.city FROM dataset,test where dataset.KID=test.KID  and dataset.date="'.$date.'"';
+$sql1 = 'SELECT zuobiao.latitude,zuobiao.longitude,dataset.score,zuobiao.city FROM dataset,zuobiao where dataset.KID=zuobiao.KID  and dataset.date="'.$date.'"';
 $result1 = mysqli_query($dbc,$sql1);
-class cat{
-    public $data;
+
+class zong{
+    public $type;
+    public $features;
+  }
+class emp{
+    public $type1;
+    public $type2;
+}
+$linshi=new emp();
+$type10="Feature";
+$type12="Point";
+$linshi->type1=$type10;
+$linshi->type2=$type12;
+$all=new zong();
+$type11="FeatureCollection";
+$all->type=$type11;
+class neibu{
+  public $type;
+  public function __construct()
+  {
+      $this->geometry = new neibu1();
+      $this->properties = new neineibu();
   }
 
-
-$ca=new emp();
-$score=array();
-class emp{
-    public $lng;
-    public $lat;
-    public $score;
-    public $title;
+  
 }
+class neibu1{
+  public $type;
+  public $coordinates;
+}
+class neineibu{
+  public $capacity;
+  public $city;
+}
+$arr=array();
 while ($row = mysqli_fetch_row($result1))
   { 
-    list($ln,$la,$sco,$name) = $row;
-    
-    $cg=new emp();
-    $cg->score= $sco;
-    $cg->lng= $ln;
-    $cg->lat= $la;
-    $cg->title=$name;
+    list($la,$ln,$sc,$ci) = $row;
+    $arr=[$la,$ln];
+    $ne=new neibu();
+    $ne->type= $type10;
+    $ne->geometry->type=$type12;
+    $ne->geometry->coordinates=$arr;
+    $ne->properties->capacity=$sc;
+    $ne->properties->city=$ci;
      //数组赋值
-    $array[] = $cg;
+    $array[] = $ne;
   }
-$ca->data=$array;
+$all->features=$array;
 
-$data = json_encode($ca);
+$data = json_encode($all);
 echo $data;
 
 ?>
