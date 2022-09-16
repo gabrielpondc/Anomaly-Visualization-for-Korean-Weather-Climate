@@ -22,7 +22,7 @@ if ($location) {
     $resa=mysqli_query($dbc,$sqla);
     $resulta=mysqli_fetch_array($resa);
 }else{
- $location='Anomaly Visualization for Weather and Climate';
+ $location='Abnormal Weather Monitoring and Curation System';
 }
 $sql = "SELECT weather.qiwen,weather.shidu FROM test,weather where test.KID=weather.KID and test.city='$location' and weather.date ='$date'";
   $result = mysqli_query($dbc,$sql); 
@@ -505,14 +505,14 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
   <div id='but' class='hidden'><input class="bt red" type="button" value=">>" id="btn1"></div>
   <div class="card">
     <div class="card-info">
-      <p class="title">Anomaly Visualization for Korean Weather Climate</p>
+      <p class="title">Abnormal Weather Monitoring and Curation System</p>
       <p class="subtitle"><span>Powered by </span><a href='https://www.oracle.com/cloud' target='_blank'><svg style="vertical-align:middle;" t="1659800786077" class="icon" viewBox="0 0 8165 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1761" width="60" height="20"><path d="M3398.499037 666.115306h520.24153l-274.800972-442.904953-504.499351 800.60224-229.885787 0.187407 614.069914-961.397353A143.303803 143.303803 0 0 1 3643.564782 0.008746c48.350978 0 92.703942 22.801172 118.878438 60.907239l616.193859 963.084015-230.073194-0.187407-107.883901-178.973581h-527.175585l-114.942893-178.723706z m2386.751699 178.911113V10.00378h-195.090574v916.669574c0 25.362399 10.307379 49.600357 28.423379 67.716357 19.115503 18.928096 44.352964 29.360413 71.464494 29.360413h888.995824l114.693017-178.661236H5785.250736z m-3225.2726-149.425762a342.829673 342.829673 0 0 0 0-685.596877H1706.777029v1013.808813h194.903167V188.665016h644.867113a163.856092 163.856092 0 0 1 164.043499 164.105968 163.98103 163.98103 0 0 1-164.043499 164.168437l-549.414537-0.187407 581.77346 507.060579h283.234282l-391.430527-328.399343 89.268149 0.187407zM506.935641 1023.812593a506.873172 506.873172 0 1 1 0-1013.808813h589.269735a506.935641 506.935641 0 0 1 506.873173 506.935641 506.935641 506.935641 0 0 1-506.873173 507.060579l-589.269735-0.187407z m576.151253-178.661236a328.086998 328.086998 0 0 0 328.149467-328.211936 328.086998 328.086998 0 0 0-328.149467-328.211936H519.991655a328.274405 328.274405 0 0 0 0 656.423872h563.095239z m3702.285608 178.661236a506.935641 506.935641 0 1 1 0-1013.808813h700.277084l-114.755487 178.723705h-572.340646a328.274405 328.274405 0 1 0 0 656.423872h702.838312l-114.505611 178.661236h-601.576121z m2384.752692-178.661236a328.086998 328.086998 0 0 1-315.593205-238.506504h833.335977l114.755486-178.723705-948.341339-0.062469a328.211936 328.211936 0 0 1 315.843081-239.193663l572.028302 0.062469 114.942893-178.723705h-700.277084a506.935641 506.935641 0 0 0 0 1013.808813h601.576121l114.505611-178.661236h-702.775843zM7961.482027 117.950149a89.455556 89.455556 0 1 1 179.036051 0 89.455556 89.455556 0 1 1-179.036051 0z m89.580494 114.318204l0 0z m-10.744661-181.597278c17.553779 0 24.800179 0.187407 33.420895 3.435793 22.488827 7.558745 24.800179 28.235972 24.800179 35.794717a49.975171 49.975171 0 0 1-1.374317 10.494785 34.795213 34.795213 0 0 1-15.867117 21.926607c-1.311848 0.999503-2.061476 1.624193-5.747145 2.99851l29.672758 53.098619h-28.673254l-25.987089-48.850729h-17.303903v48.78826h-24.987586V50.671075h32.046579z m8.933061 57.721323c7.683683-0.124938 16.241931-0.687159 21.239448-7.996028a18.990565 18.990565 0 0 0 2.873572-10.932068 16.86662 16.86662 0 0 0-9.62022-15.492303c-5.747145-2.248883-11.619227-2.248883-23.425861-2.248883h-7.058993v36.669282h15.992054z" fill="#FF0000" p-id="1762"></path></svg>  <svg style="vertical-align:middle;" id="u30brandtxt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.14 18.12" width="20" height="10"><path fill="#ffffff" d="M8.16,18.12a7.76,7.76,0,0,1-6.05-2.35A9.79,9.79,0,0,1,0,9.05,9.58,9.58,0,0,1,2.14,2.38,7.65,7.65,0,0,1,8.16,0a7.65,7.65,0,0,1,6,2.38,9.58,9.58,0,0,1,2.14,6.67,9.79,9.79,0,0,1-2.11,6.72A7.71,7.71,0,0,1,8.16,18.12Zm0-3.19a3.69,3.69,0,0,0,3.24-1.51,7.48,7.48,0,0,0,1.08-4.37A7.37,7.37,0,0,0,11.4,4.7,3.69,3.69,0,0,0,8.16,3.19,3.75,3.75,0,0,0,4.9,4.7,7.45,7.45,0,0,0,3.84,9.05,7.56,7.56,0,0,0,4.9,13.42,3.75,3.75,0,0,0,8.16,14.93ZM32,14v3.12a11.25,11.25,0,0,1-2.19.72,10.85,10.85,0,0,1-2.71.31q-4.2,0-6.36-2.38T18.54,8.86A9.81,9.81,0,0,1,19.6,4.13a7.18,7.18,0,0,1,3-3A9.38,9.38,0,0,1,27.23,0a10.19,10.19,0,0,1,2.35.26,9,9,0,0,1,1.9.68V4.1a15.34,15.34,0,0,0-2.21-.67,8.49,8.49,0,0,0-1.78-.19A4.85,4.85,0,0,0,23.7,4.7a6,6,0,0,0-1.32,4.16,6.85,6.85,0,0,0,1.3,4.48,4.66,4.66,0,0,0,3.81,1.56,10.24,10.24,0,0,0,2-.21A22.73,22.73,0,0,0,32,14Zm2.44,3.81V.34h3.74V17.78Z"></path></svg></a> <br> <span><h6>Get the name of constructor <svg t="1659804711797" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5022" width="20" height="20"><path d="M512 61.44a245.76 245.76 0 0 1 245.76 245.76v409.6a245.76 245.76 0 1 1-491.52 0v-409.6a245.76 245.76 0 0 1 245.76-245.76z m0 40.96a204.8 204.8 0 0 0-204.5952 195.91168L307.2 307.2v409.6a204.8 204.8 0 0 0 409.3952 8.88832L716.8 716.8v-409.6a204.8 204.8 0 0 0-204.8-204.8z" fill="#2c2c2c" p-id="5023"></path><path d="M552.96 634.88v81.92H471.04v-81.92h81.92z m0-163.84v81.92H471.04v-81.92h81.92z m0-163.84v81.92H471.04v-81.92h81.92z" fill="#2c2c2c" p-id="5024"></path></svg></h6></p>
     </div>
     <div class="card-bio">
       <p>Changes by<br><br>Yuxuan,Gu<br><br>Gen,Li<br><br>Jiakai,Gu<br><br>Jason J. Jung</p>
     </div>
   </div>
-  <div class='footer'>CopyRight© 2022 Knowledge Engineering Laboratory (<a href='http://ke.cau.ac.kr'>KEL</a>)
+  <div class='footer'>CopyRight© 2022 Knowledge Engineering Laboratory (<a href='http://ke.cau.ac.kr/'>KEL</a>)
 Chung-Ang University, Korean
 </div>
 </div>
@@ -546,12 +546,13 @@ Chung-Ang University, Korean
   <script>
     var weburl; 
     var weburl2;
+
     function apps(){
       document.getElementById('left').className='hidden'
     }// 给按钮注册事件
   </script>
   <?php
-  if ($location=='Anomaly Visualization for Weather and Climate') {
+  if ($location=='Abnormal Weather Monitoring and Curation System') {
     echo "<script type=\"text/javascript\"> apps(); weburl='http://0.0.0.0';</script>";
     
   }else{
@@ -559,175 +560,172 @@ Chung-Ang University, Korean
   }
   ?>
  
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9567e1e6c68a020d2e38a3c687c1b4db" ></script>
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
-  <script src="https://unpkg.com/@antv/l7"></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+ <script src="https://unpkg.com/@antv/l7"></script>
+ <script>
+  var ppp;
+  var address='chushizhi.json';
+  var scene = new L7.Scene({
+    id: 'map',
+    logoVisible:false,
+    map: new L7.Mapbox({
+          center: [127.859935,35.879258],
+          zoom: 6.5,
+          logo: false,
+          style: {
+            version: 8,
+            sources: {
+              'raster-tiles': {
+                type: 'raster',
+                tiles: [
+                  // mt(0—3) Google地图使用了四个服务地址
+                  // lyrs=
+                  // m：路线图
+                  // t：地形图
+                  // p：带标签的地形图
+                  // s：卫星图
+                  // y：带标签的卫星图
+                  // h：标签层（路名、地名等）
+                  'https://mt1.google.com/maps/vt?lyrs=m%40721&hl=ko-KR&gl=KR&x={x}&y={y}&z={z}',
+                ],
+                tileSize: 256,
+              },
+            },
+            layers: [
+              {
+                id: 'google',
+                type: 'raster',
+                source: 'raster-tiles',
+                // minZoom: 0,
+                // "maxzoom": 18
+              },
+            ],
+          },
+        
+      }),
+  });
+  scene.on('loaded', () => {
+    fetch(
+      address
+    )
+      .then(res => res.json())
+      .then(data => {
+        ppp=data
+        data.features = data.features.filter(item => {
+          return item.properties.capacity;
+        });
+        const pointLayer = new L7.PointLayer({})
+          .source(data)
+          .shape('simple')
+          .animate({
+            enable: true,
+            speed:0.1,
+            })
+          .size('capacity', [15, 15 ])
+          
+          .color('capacity',['#004c97', '#004c97', '#004c97'])
+          .active(true)
+          .style({
+            opacity: 0.5,
+            strokeWidth: 3
+          });
 
-    <script>
-      
-      var widthdd = document.body.clientWidth * document.body.clientHeight;
-      var pp;
-      if (widthdd>2073600){
-        pp=12;
-      }else{
-        pp=13;
-      };
-        var loc;
-        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = { 
-                center: new kakao.maps.LatLng(36.222390213928534,127.67250218743163 ), // 지도의 중심좌표
-                level: pp // 지도의 확대 레벨
-            };
-        
-        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-        
-        // 마커를 표시할 위치입니다 
-        var positions = [
-    {
-        content: '<div class="hp"">광주광역시</div>', 
-        latlng: new kakao.maps.LatLng(35.17301932510424, 126.85237491820155),
-        
-    },
-    {
-        content: '<div class="hp"">서울특별시</div>', 
-        latlng: new kakao.maps.LatLng(37.56768799957185,126.97299241863696)
-    },
-    {
-        content: '<div class="hp"">인천광역시</div>', 
-        latlng: new kakao.maps.LatLng(37.4106544114952, 126.64846149218857)
-    },
-    {
-        content: '<div class="hp"">제주특별자치도</div>',
-        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-    },
-    {
-        content: '<div class="hp"">태백</div>', 
-        latlng: new kakao.maps.LatLng(  37.1722456201008 , 128.98215818152414)
-    },
-    {
-        content: '<div class="hp"">부산광역시</div>', 
-        latlng: new kakao.maps.LatLng(35.20820133685076, 129.07001668907236)
-    },
-    {
-        content: '<div class="hp"">서산</div>', 
-        latlng: new kakao.maps.LatLng(36.791360630963986,126.44838745347339)
-    }, 
-    {
-        content: '<div class="hp"">안동</div>', 
-        latlng: new kakao.maps.LatLng( 36.57121671809722,  128.73648523660486)
-    },
-     {
-        content: '<div class="hp"">대구광역시</div>', 
-        latlng: new kakao.maps.LatLng(35.87110901719838, 128.6036290553286)
-    },
-    {
-        content: '<div class="hp"">보령</div>', 
-        latlng: new kakao.maps.LatLng( 36.34214970429268, 126.60983734830197)
-    },
-    {
-        content: '<div class="hp"">전주</div>', 
-        latlng: new kakao.maps.LatLng(35.82820495689258,  127.14924932304898 )
-    },
- 
-    {
-        content: '<div class="hp"">춘천</div>', 
-        latlng: new kakao.maps.LatLng(37.86977918805513, 127.74680496650275)
-    },
-    {
-        content: '<div class="hp"">대전광역시</div>', 
-        latlng: new kakao.maps.LatLng(36.355312407234514, 127.3828752346929)
-    },
-    {
-        content: '<div class="hp"">울산광역시</div>', 
-        latlng: new kakao.maps.LatLng(35.547574573233284, 129.34235064307478)
-    },
-    {
-        content: '<div class="hp"">충주</div>', 
-        latlng: new kakao.maps.LatLng(36.99203464607101,127.92505188714917)
-    },
-    
-    {
-        content: '<div class="hp"">여수</div>', 
-        latlng: new kakao.maps.LatLng(34.765951777362446,127.71217151084751)
-    },
-    {
-        content: '<div class="hp"">영덕</div>', 
-        latlng: new kakao.maps.LatLng(36.4149832112812,129.37081536834498)
-    },
-    {
-        content: '<div class="hp"">목포</div>', 
-        latlng: new kakao.maps.LatLng(34.81956217630191, 126.38630688909971)
-    },
-    {
-        content: '<div class="hp"">구미</div>', 
-        latlng: new kakao.maps.LatLng( 36.12408405614859,128.34982815364026)
-    },
-    {
-        content: '<div class="hp"">원주</div>', 
-        latlng: new kakao.maps.LatLng( 37.35053099761608,127.94821276171591)
-    },
-];
-    var loc=['광주광역시','서울특별시','인천광역시','제주특별자치도','태백','부산광역시','서산','안동','대구광역시','보령','전주','춘천','대전광역시','울산광역시','충주','여수','영덕','목포','구미','원주']
-var imageSrc = "/we.png"; 
-for (var i = 0; i < positions.length; i ++) {
-    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-    // 마커를 생성합니다
-        // 마커 이미지의 이미지 크기 입니다
-        var imageSize = new kakao.maps.Size(35, 35); 
-    
-        // 마커 이미지를 생성합니다    
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커의 위치
-        image : markerImage // 마커 이미지 
-       });
+        scene.addLayer(pointLayer);
+        pointLayer.on('click', e => {
+          ppp=e
+          initPlane(e.feature.properties.city)
+        })
+      });
+  });
 
-    // 마커에 표시할 인포윈도우를 생성합니다 
-    var infowindow = new kakao.maps.InfoWindow({
-        content: positions[i].content, // 인포윈도우에 표시할 내용
-    });
-        
-           
-        
-        
-        // 마커에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(marker, 'click', makeListener(map, marker, infowindow,loc[i]));
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-                // 마커를 생성합니다
-        
-}
-// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-var mapTypeControl = new kakao.maps.MapTypeControl();
 
-// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
 
-function makeListener(map, marker, infowindow,loc) {
-    return function() {
-        infowindow.open(map, marker);
-        window.location.href="?name="+loc; 
-    };
-}
-function makeOverListener(map, marker, infowindow) {
-    return function() {
-        infowindow.open(map, marker);
-    };
+
+function initPlane(loc) {
+  window.location.href="maptest1.php?name="+loc; 
 }
 
-// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-function makeOutListener(infowindow) {
-    return function() {
-        infowindow.close();
-    };
-}
-        // 아래 코드는 위의 마커를 생성하는 코드에서 clickable: true 와 같이
-        // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-        // marker.setClickable(true);
+function rem(num){
+  var a=num;
+  scene.destroy();
+  scene = new L7.Scene({
+    id: 'map',
+    logoVisible:false,
+    map: new L7.Mapbox({
+          center: [127.859935,35.879258],
+          zoom: 6.5,
+          logo: false,
+          style: {
+            version: 8,
+            sources: {
+              'raster-tiles': {
+                type: 'raster',
+                tiles: [
+                  // mt(0—3) Google地图使用了四个服务地址
+                  // lyrs=
+                  // m：路线图
+                  // t：地形图
+                  // p：带标签的地形图
+                  // s：卫星图
+                  // y：带标签的卫星图
+                  // h：标签层（路名、地名等）
+                  'https://mt1.google.com/maps/vt?lyrs=m%40721&hl=ko-KR&gl=KR&x={x}&y={y}&z={z}',
+                ],
+                tileSize: 256,
+              },
+            },
+            layers: [
+              {
+                id: 'google',
+                type: 'raster',
+                source: 'raster-tiles',
+                // minZoom: 0,
+                // "maxzoom": 18
+              },
+            ],
+          },
         
-        // 마커를 지도에 표시합니다.
-        marker.setMap(map);
+      }),
+  });
+  scene.on('loaded', () => {
+    fetch(
+      a
+    )
+      .then(res => res.json())
+      .then(data => {
+        ppp=data
+        data.features = data.features.filter(item => {
+          return item.properties.capacity;
+        });
+        const pointLayer = new L7.PointLayer({})
+          .source(data)
+          .shape('circle')
+          .animate({
+            enable: true,
+            rings:4,
+            })
+          .size('capacity', [ 50, 100 ])
+          
+          .color('capacity',['#1059b3', '#b36f10', '#ab2020'])
+          .active(true)
+          .style({
+
+            strokeWidth: 0
+          });
+
+        scene.addLayer(pointLayer);
+        pointLayer.on('click', e => {
+          ppp=e
+          initPlane(e.feature.properties.city)
+        })
+      });
+  });
+}
+
+
+
+
 // 获取元素
 var btn = document.getElementById('btn');
 var but=document.getElementById('but');
@@ -760,39 +758,6 @@ btn1.onclick = function () {
 		isShow = true;
 	}
 }
-window.addEventListener('resize', function(){
-  map = new kakao.maps.Map(mapContainer, mapOption);
-  for (var i = 0; i < positions.length; i ++) {
-    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-    // 마커를 생성합니다
-        // 마커 이미지의 이미지 크기 입니다
-        var imageSize = new kakao.maps.Size(35, 35); 
-    
-        // 마커 이미지를 생성합니다    
-        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커의 위치
-        image : markerImage // 마커 이미지 
-        
-       });
-
-    // 마커에 표시할 인포윈도우를 생성합니다 
-    var infowindow = new kakao.maps.InfoWindow({
-        content: positions[i].content, // 인포윈도우에 표시할 내용
-    });
-        
-           
-        
-        
-        // 마커에 클릭이벤트를 등록합니다
-        kakao.maps.event.addListener(marker, 'click', makeListener(map, marker, infowindow,loc[i]));
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-                // 마커를 생성합니다
-        
-}
-});
         </script>
    <script type="text/javascript">
     function sleep(ms){
@@ -1006,12 +971,9 @@ window.addEventListener('resize', function(){
           myChart.setOption(option);
           myChart.group='weather';
           myChart.on('click', function (params) {
-            document.getElementById("myHeader").innerHTML = "<?php echo $location ?> 날씨 정보<br>"+params.name;
-            document.getElementById("myHeader1").innerHTML = "각 도시 "+params.name+" 이상 점수";
-            creatTable(infor(params.name));
-            draw2(infor2(params.name));
             
-            city='<?php echo $location ?>';
+            rem('xin1.php?date='+params.name);
+  
             
             // window.webkit.messageHandlers.iOSObj.postMessage(data)
           });
