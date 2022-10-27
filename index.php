@@ -454,50 +454,32 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
       </svg>
     </div>
   </div>
-  <span>확인</span>
+  <span>Check</span>
 </button>
 <div id="container" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader2" style="float: left;width: 100%;line-height: 45px;text-align: center;">기온(°C)</p>
+<p id="myHeader2" style="float: left;width: 100%;line-height: 45px;text-align: center;">Temperature(°C)</p>
 <div id="container3" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader3" style="float: left;width: 100%;line-height: 45px;text-align: center;">습도(%)</p>
+<p id="myHeader3" style="float: left;width: 100%;line-height: 45px;text-align: center;">Humidity(%)</p>
 <div id="container4" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader4" style="float: left;width: 100%;line-height: 45px;text-align: center;">증기압(hPa)</p>
+<p id="myHeader4" style="float: left;width: 100%;line-height: 45px;text-align: center;">Vapor pressure(hPa)</p>
 <div id="container5" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader5" style="float: left;width: 100%;line-height: 45px;text-align: center;">이슬점온도(°C)</p>
+<p id="myHeader5" style="float: left;width: 100%;line-height: 45px;text-align: center;">Dew point temperature(°C)</p>
 <div id="container6" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader6" style="float: left;width: 100%;line-height: 45px;text-align: center;">현지기압(hPa)</p>
+<p id="myHeader6" style="float: left;width: 100%;line-height: 45px;text-align: center;">Local air pressure(hPa)</p>
 <div id="container7" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader7" style="float: left;width: 100%;line-height: 45px;text-align: center;">해면기압(hPa)</p>
+<p id="myHeader7" style="float: left;width: 100%;line-height: 45px;text-align: center;">Sea surface pressure(hPa)</p>
 <div id="container8" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader8" style="float: left;width: 100%;line-height: 45px;text-align: center;">지면온도(°C)</p>
+<p id="myHeader8" style="float: left;width: 100%;line-height: 45px;text-align: center;">Ground temperature(°C)</p>
 <div id="container9" style="width: 100%;height: 250px;width: auto"></div>
-<p id="myHeader10" style="float: left;width: 100%;line-height: 45px;text-align: center;">비교1</p>
+<p id="myHeader10" style="float: left;width: 100%;line-height: 45px;text-align: center;">Comparison1</p>
 <div id="container11" style="width: 100%;height: 500px;width: auto"></div>
-<p id="myHeader11" style="float: left;width: 100%;line-height: 45px;text-align: center;">비교2</p>
+<p id="myHeader11" style="float: left;width: 100%;line-height: 45px;text-align: center;">Comparison2</p>
 <div id="container12" style="width: 100%;height: 500px;width: auto"></div>
-<p id="myHeader12" style="float: left;width: 100%;line-height: 45px;text-align: center;">비교3</p>
+<p id="myHeader12" style="float: left;width: 100%;line-height: 45px;text-align: center;">Comparison3</p>
 <div id="container13" style="width: 100%;height: 500px;width: auto"></div>
-<p id="myHeader1" style="float: left;width: 100%;line-height: 45px;text-align: center;">각 도시 이상 값이</p>
-<div id="container2" style="width: 100%;height: 250px;width: auto"></div>
-  <p id="myHeader" style="float: left;width: 100%;line-height: 45px;text-align: center;"><?php echo $location ?> 날씨의 정보</p>
-  <table class="btb" style=width:100% height="100">
- 
-         <thead>
-             <tr>
-                 <td>기온(°C)</td>
-                 <td>습도(%)</td>
-                 <td>증기압(hPa)</td>
-                 <td>이슬점온도(°C)</td>
-                 <td>현지기압(hPa)</td>
-                 <td>해면기압(hPa)</td>
-                 <td>지면온도(°C)</td>
-             </tr>
-         </thead>
-         <tbody id="tbody1">
-             
-         </tbody>    
-     </table>
-</table>
+
+
+
 
 
 </div>
@@ -513,7 +495,7 @@ table,table tr th, table tr td { font-weight: bold;border:0px solid #0094ff; }
     </div>
   </div>
   <div class='footer'>CopyRight© 2022 Knowledge Engineering Laboratory (<a href='http://ke.cau.ac.kr/'>KEL</a>)
-Chung-Ang University, Korean
+Chung-Ang University, Korea
 </div>
 </div>
     <script type="text/javascript">
@@ -565,6 +547,7 @@ Chung-Ang University, Korean
  <script src="https://unpkg.com/@antv/l7"></script>
  <script>
   var ppp;
+  var ppp1=[];
   var address='chushizhi.json';
   var scene = new L7.Scene({
     id: 'map',
@@ -618,12 +601,7 @@ Chung-Ang University, Korean
         const pointLayer = new L7.PointLayer({})
           .source(data)
           .shape('simple')
-          .animate({
-            enable: true,
-            speed:0.1,
-            })
           .size('capacity', [15, 15 ])
-          
           .color('capacity',['#004c97', '#004c97', '#004c97'])
           .active(true)
           .style({
@@ -643,7 +621,7 @@ Chung-Ang University, Korean
 
 
 function initPlane(loc) {
-  window.location.href="maptest1.php?name="+loc; 
+  window.location.href="?name="+loc; 
 }
 
 function rem(num){
@@ -701,23 +679,19 @@ function rem(num){
         const pointLayer = new L7.PointLayer({})
           .source(data)
           .shape('circle')
-          .animate({
-            enable: true,
-            rings:4,
-            })
-          .size('capacity', [ 50, 100 ])
-          
+          .size('capacity', [ 10, 30 ])
           .color('capacity',['#1059b3', '#b36f10', '#ab2020'])
           .active(true)
           .style({
-
+            opacity: 0.3,
             strokeWidth: 0
           });
 
         scene.addLayer(pointLayer);
         pointLayer.on('click', e => {
           ppp=e
-          initPlane(e.feature.properties.city)
+          ppp1=infor1(e.feature.properties.city,e.feature.properties.date)
+          draw10(ppp1)
         })
       });
   });
@@ -812,20 +786,20 @@ btn1.onclick = function () {
                 async: true,
                 timeout: 10000000,
                 url: './qqq6.php?name=<?php echo $location ?>&begin=<?php echo $begin ?>&end=<?php echo $end ?>',
-                data2: {},
+                data200: {},
                 dataType: "json",
                 success: function(result){
                     
                     if(result){
-                        data2=result;
-                        wendulist = data2.map(function (item) { return item[0];});
-                        wenduvaluelist = data2.map(function (item) {return item[1];});
-                        shiduvaluelist = data2.map(function (item) {return item[2];});
-                        zhengqiyavaluelist = data2.map(function (item) {return item[3];}); 
-                        ludianwenduvaluelist = data2.map(function (item) {return item[4];});
-                        dangdiqiyavaluelist = data2.map(function (item) {return item[5];});
-                        haimianqiyavaluelist = data2.map(function (item) {return item[6];});
-                        dimianwenduvaluelist = data2.map(function (item) {return item[7];});
+                        data200=result;
+                        wendulist = data200.map(function (item) { return item[0];});
+                        wenduvaluelist = data200.map(function (item) {return item[1];});
+                        shiduvaluelist = data200.map(function (item) {return item[2];});
+                        zhengqiyavaluelist = data200.map(function (item) {return item[3];}); 
+                        ludianwenduvaluelist = data200.map(function (item) {return item[4];});
+                        dangdiqiyavaluelist = data200.map(function (item) {return item[5];});
+                        haimianqiyavaluelist = data200.map(function (item) {return item[6];});
+                        dimianwenduvaluelist = data200.map(function (item) {return item[7];});
 
                     }
 
@@ -833,14 +807,14 @@ btn1.onclick = function () {
                 error: function(errmsg) {
                   if(errmsg){
                     data2=errmsg;
-                    wendulist = data2.map(function (item) { return item[0];});
-                    wenduvaluelist = data2.map(function (item) {return item[1];});
-                    shiduvaluelist = data2.map(function (item) {return item[2];});
-                    zhengqiyavaluelist = data2.map(function (item) {return item[3];}); 
-                    ludianwenduvaluelist = data2.map(function (item) {return item[4];});
-                    dangdiqiyavaluelist = data2.map(function (item) {return item[5];});
-                    haimianqiyavaluelist = data2.map(function (item) {return item[6];});
-                    dimianwenduvaluelist = data2.map(function (item) {return item[7];});
+                    wendulist = data200.map(function (item) { return item[0];});
+                    wenduvaluelist = data200.map(function (item) {return item[1];});
+                    shiduvaluelist = data200.map(function (item) {return item[2];});
+                    zhengqiyavaluelist = data200.map(function (item) {return item[3];}); 
+                    ludianwenduvaluelist = data200.map(function (item) {return item[4];});
+                    dangdiqiyavaluelist = data200.map(function (item) {return item[5];});
+                    haimianqiyavaluelist = data200.map(function (item) {return item[6];});
+                    dimianwenduvaluelist = data200.map(function (item) {return item[7];});
                 }
                 }
                 
@@ -890,7 +864,7 @@ btn1.onclick = function () {
       title: [
       {
         left: 'center',
-        text: city+' 이상 점수'
+        text: city+' Anomaly Score'
       }
     ],
         tooltip: {
@@ -997,10 +971,7 @@ btn1.onclick = function () {
       */
 
     draw(dateList,valueList,"<?php echo $location ?>");
-    setInterval(function setusers() {
-                $.ajax(getting);
-                $.ajax(getting3);
-                draw(wendulist ,data2,"<?php echo $location ?>");},86400000);
+
 
 
    
@@ -1094,33 +1065,34 @@ btn1.onclick = function () {
     }
     
 
-    function infor(date){
-      var getting1={
-                    type: "get",
-                    async: false,
-                    url: "./qqq3.php?name=<?php echo $location ?>&date="+date,
-                    data: {},
-                    dataType: "json",
-                    success: function(result){
-                        
-                        if(result){ 
-                            data=result;
-                            newdataList=data;
-                            
-                          
-                            
-                        }
+    function infor1(city,date){
+  
+          var getting1={
+                          type: "get",
+                          async: false,
+                          url: "./qqq3.php?name="+city+"&date="+date,
+                          data: {},
+                          dataType: "json",
+                          success: function(result){
+                              
+                              if(result){ 
+                                  data=result;
+                                
+                                  
+                                
+                                  
+                              }
 
-                    },
-                    error: function(errmsg) {
-                      
-                    }
-                    
-                };
-        $.ajax(getting1);
-        return newdataList;
-        
-    }
+                          },
+                          error: function(errmsg) {
+                            
+                          }
+                          
+                      };
+            $.ajax(getting1);
+            return data;
+  }
+
     function infor2(date){
               var getting2={
                     type: "get",
@@ -1165,7 +1137,7 @@ btn1.onclick = function () {
               option = {
               title: [
               {
-                text: '비교1',
+                text: 'Comparison 1',
                 left: 'center'
               },
               {
@@ -1199,16 +1171,16 @@ btn1.onclick = function () {
                         itemNameFormatter: function (params) {
                           switch (params.value) {
                                 case 0:
-                                  return '기온';
+                                  return 'Temperature';
                                   break;
                                 case 1:
-                                  return '증기압';
+                                  return 'Vapor pressure';
                                   break;
                                 case 2:
-                                  return '이슬점온도';
+                                  return 'Dew point temperature';
                                   break;
                                 case 3:
-                                  return '지면온도';
+                                  return 'Ground temperature';
                                   break;
                                 default:
                                   return 'ungrouped';
@@ -1283,7 +1255,7 @@ btn1.onclick = function () {
               option = {
               title: [
               {
-                text: '비교2',
+                text: 'Comparison 2',
                 left: 'center'
               },
               {
@@ -1314,7 +1286,7 @@ btn1.onclick = function () {
                         itemNameFormatter: function (params) {
                           switch (params.value) {
                                 case 0:
-                                  return '습도';
+                                  return 'Humidity';
                                   break;
                                 
                                 default:
@@ -1390,7 +1362,7 @@ btn1.onclick = function () {
               option = {
               title: [
               {
-                text: '비교3',
+                text: 'Comparison 3',
                 left: 'center'
               },
               {
@@ -1422,10 +1394,10 @@ btn1.onclick = function () {
                         itemNameFormatter: function (params) {
                           switch (params.value) {
                                 case 0:
-                                  return '현지기압';
+                                  return 'Local air pressure';
                                   break;
                                 case 1:
-                                  return '해면기압';
+                                  return 'Sea surface pressure';
                                   break;
                               }
                 }
@@ -1512,7 +1484,7 @@ btn1.onclick = function () {
             title: [
             {
               left: 'center',
-              text: city+' 기온(°C)'
+              text: city+' Temperature(°C)'
             }
           ],
               tooltip: {
@@ -1595,7 +1567,7 @@ btn1.onclick = function () {
             title: [
             {
               left: 'center',
-              text: city+' 습도(%)'
+              text: city+' Humidity(%)'
             }
           ],
               tooltip: {
@@ -1680,7 +1652,7 @@ btn1.onclick = function () {
                 title: [
                 {
                   left: 'center',
-                  text: city+' 증기압(hPa)'
+                  text: city+' Vapor pressure(hPa)'
                 }
               ],
                   tooltip: {
@@ -1767,7 +1739,7 @@ btn1.onclick = function () {
                 title: [
                 {
                   left: 'center',
-                  text: city+' 이슬점온도(°C)'
+                  text: city+' Dew point temperature(°C)'
                 }
               ],
                   tooltip: {
@@ -1854,7 +1826,7 @@ btn1.onclick = function () {
                 title: [
                 {
                   left: 'center',
-                  text: city+' 현지기압(hPa)'
+                  text: city+' Local air pressure(hPa)'
                 }
               ],
                   tooltip: {
@@ -1940,7 +1912,7 @@ btn1.onclick = function () {
                 title: [
                 {
                   left: 'center',
-                  text: city+' 해면기압(hPa)'
+                  text: city+' Sea surface pressure(hPa)'
                 }
               ],
                   tooltip: {
@@ -2027,7 +1999,7 @@ btn1.onclick = function () {
                 title: [
                 {
                   left: 'center',
-                  text: city+' 지면온도(°C)'
+                  text: city+' Ground temperature(°C)'
                 }
               ],
                   tooltip: {
@@ -2094,6 +2066,40 @@ btn1.onclick = function () {
                   myChart.group='weather';
               }
             }
+          function draw10(datalist){
+              var dom = document.getElementById('container14');
+              var myChart = echarts.init(dom, null, {
+                renderer: 'canvas',
+                useDirtyRect: false
+              });
+              var app = {};
+              var option;
+              // prettier-ignore
+              option = {
+                xAxis: {
+                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                      },
+                      yAxis: {},
+                      series: [
+                        {
+                          type: 'bar',
+                          data: datalist
+                        }
+                      ]
+              
+}
+          if (option && typeof option === 'object') {
+                  myChart.setOption(option);
+                  myChart.group='weather';
+              }
+
+
+              }
+          
+          
+        
+
+          
           setInterval(redraw, 1000);
           function redraw(){
           draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
@@ -2106,6 +2112,7 @@ btn1.onclick = function () {
           xiangxingtu1(wenduvaluelist,zhengqiyavaluelist,ludianwenduvaluelist,dimianwenduvaluelist);
           xiangxingtu2(shiduvaluelist);
           xiangxingtu3(dangdiqiyavaluelist,haimianqiyavaluelist);
+          draw10(newdataList);
           };
           draw3(wendulist,wenduvaluelist,"<?php echo $location ?>");
           draw4(wendulist,shiduvaluelist,"<?php echo $location ?>");

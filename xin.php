@@ -13,8 +13,8 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
   { 
     die ("Can\'t use  " ); 
   } 
-$sql = "SELECT DATE_FORMAT(dataset.date,'%Y-%m-%d') time FROM test,dataset where test.KID=dataset.KID and dataset.date >='$begin' AND dataset.date < '$end' group by time";
-$sql1 = 'SELECT dataset.score FROM dataset,test where dataset.KID=test.KID and test.city= "'.$name.'" and dataset.date>="'.$begin.'" AND dataset.date < "'.$end.'"';
+$sql = "SELECT DATE_FORMAT(anomalyscore.date,'%Y-%m-%d') time FROM coordinates,anomalyscore where coordinates.KID=anomalyscore.KID and anomalyscore.date >='$begin' AND anomalyscore.date < '$end' group by time";
+$sql1 = 'SELECT anomalyscore.score FROM anomalyscore,coordinates where  coordinates.city= "'.$name.'" and anomalyscore.KID=coordinates.KID and anomalyscore.date>="'.$begin.'" AND anomalyscore.date < "'.$end.'"';
 $result = mysqli_query($dbc,$sql); 
 $result1 = mysqli_query($dbc,$sql1);
 $arr1=mysqli_fetch_all($result1);

@@ -11,7 +11,7 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
   { 
     die ("Can\'t use  " ); 
   } 
-$sql1 = 'SELECT zuobiao.latitude,zuobiao.longitude,dataset.score,zuobiao.city FROM dataset,zuobiao where dataset.KID=zuobiao.KID  and dataset.date="'.$date.'"';
+$sql1 = 'SELECT coordinates.latitude,coordinates.longitude,anomalyscore.score,coordinates.city,anomalyscore.date FROM anomalyscore,coordinates where anomalyscore.KID=coordinates.KID  and anomalyscore.date="'.$date.'"';
 $result1 = mysqli_query($dbc,$sql1);
 
 class zong{
@@ -47,11 +47,12 @@ class neibu1{
 class neineibu{
   public $capacity;
   public $city;
+  public $date;
 }
 $arr=array();
 while ($row = mysqli_fetch_row($result1))
   { 
-    list($la,$ln,$sc,$ci) = $row;
+    list($la,$ln,$sc,$ci,$da) = $row;
     $arr=[floatval($ln),floatval($la)];
     $ne=new neibu();
     $ne->type= $type10;
@@ -59,6 +60,7 @@ while ($row = mysqli_fetch_row($result1))
     $ne->geometry->coordinates=$arr;
     $ne->properties->capacity=floatval($sc);
     $ne->properties->city=$ci;
+    $ne->properties->date=$da;
      //数组赋值
     $array[] = $ne;
   }

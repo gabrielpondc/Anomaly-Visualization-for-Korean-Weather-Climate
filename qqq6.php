@@ -16,21 +16,21 @@ $db_selected=@mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME) OR die('Could 
   { 
     die ("Can\'t use  " ); 
   } 
-$sql1 = "SELECT DATE_FORMAT(weather.date,'%Y-%m-%d') time FROM test,weather where test.KID=weather.KID and weather.date >='$begin' AND weather.date < '$end' group by time";
+$sql1 = "SELECT DATE_FORMAT(weather.date,'%Y-%m-%d') time FROM coordinates,weather where coordinates.KID=weather.KID and weather.date >='$begin' AND weather.date < '$end' group by time";
 $result1 = mysqli_query($dbc,$sql1); 
-$sql = 'SELECT weather.qiwen FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sql = 'SELECT weather.temperature FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $result = mysqli_query($dbc,$sql); 
-$sqlshidu = 'SELECT weather.shidu FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sqlshidu = 'SELECT weather.humidity FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $resultshidu = mysqli_query($dbc,$sqlshidu); 
-$sqlzhengqiya = 'SELECT weather.zhengqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sqlzhengqiya = 'SELECT weather.vaporpressure FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $resultzhengqiya = mysqli_query($dbc,$sqlzhengqiya);
-$sqlludianwendu = 'SELECT weather.ludianwendu FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sqlludianwendu = 'SELECT weather.dewpointtemperature FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $resultludianwendu = mysqli_query($dbc,$sqlludianwendu);
-$sqldangdiqiya = 'SELECT weather.dangdiqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sqldangdiqiya = 'SELECT weather.localairpressure FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $resultdangdiqiya = mysqli_query($dbc,$sqldangdiqiya);
-$sqlhaimianqiya = 'SELECT weather.haimianqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sqlhaimianqiya = 'SELECT weather.seasurfacepressure FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $resulthaimianqiya = mysqli_query($dbc,$sqlhaimianqiya);
-$sqldimianqiya = 'SELECT weather.dimianqiya FROM weather,test where weather.KID=test.KID and test.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
+$sqldimianqiya = 'SELECT weather.groundtemperature FROM weather,coordinates where weather.KID=coordinates.KID and coordinates.city= "'.$name.'" and weather.date>="'.$begin.'" AND weather.date < "'.$end.'"';
 $resultdimianqiya = mysqli_query($dbc,$sqldimianqiya);
 $arr=mysqli_fetch_all($result);
 $arrzhengqiya=mysqli_fetch_all($resultzhengqiya);

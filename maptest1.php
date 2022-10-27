@@ -642,7 +642,7 @@ Chung-Ang University, Korean
 
 
 function initPlane(loc) {
-  window.location.href="maptest1.php?name="+loc; 
+  window.location.href="?name="+loc; 
 }
 
 function rem(num){
