@@ -1,5 +1,9 @@
 # Anomaly Visualization for Korean Weather Climate
 
+## Abstract
+
+This paper presents a system, namely, the abnormal-weather monitoring and curation service (AWMC), which provides people with a better understanding of abnormal weather conditions. The service can analyze a set of multivariate weather datasets (i.e., 7 meteorological datasets from 18 cities in Korea) and show (i) which dates are mostly abnormal in a certain city, and (ii) which cities are mostly abnormal on a certain date. In particular, the dynamic graph-embedding-based anomaly detection method was employed to measure anomaly scores. We implemented the service and conducted evaluations. Regarding the results of monitoring abnormal weather, AWMC shows that the averag
+
 ### Cite this project
 ```
 @Article{app122010444,
