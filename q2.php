@@ -1,10 +1,9 @@
 <?php 
-$set_charset = 'export LANG=ko_KR.UTF-8; ';
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $nnam = $_POST["nname"];
     echo "	<script type='text/javascript'>document.title='查询'+$nnam+'中'</script>";
-    $cmd=$set_charset.'/usr/bin/python3 /media/ubuntu/Newdisk/xyo/admin/localhost_80/wwwroot/cha.py '.$nnam.' 2>error2.txt';
+    $cmd='python F:\avwc\cha.py '.$nnam.' 2>error2.txt';
     $l = shell_exec($cmd);
     $array=$l;
     header("refresh:2;url=cha.php");
