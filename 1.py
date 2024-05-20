@@ -4,6 +4,7 @@ import sys
  
 def csv_file_read(csv):
     # 读取表头
+    # 你猜猜这是干啥的
     head_row = pd.read_csv(csv, nrows=0)
     print(list(head_row))
     # 表头列转为 list
