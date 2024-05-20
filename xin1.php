@@ -22,6 +22,7 @@ class emp{
     public $type1;
     public $type2;
 }
+//读取数据进行重绘
 $linshi=new emp();
 $type10="Feature";
 $type12="Point";
